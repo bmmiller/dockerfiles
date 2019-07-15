@@ -8,7 +8,7 @@
 docker run -d \
 	-p 9001:9001 \
 	-p 5000:22 \
-	combro2k/alpine-weechat:latest
+	bmmiller/alpine-weechat:latest
 ~~~
 
 This is a manual fork of https://github.com/combro2k/dockerfiles with tor ripped out.  I found it only causes reconnection issues and my personal use case doesn't require it.
