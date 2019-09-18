@@ -1,53 +1,53 @@
 # create the build instance
 FROM microsoft/dotnet:2.2-sdk AS build
 
-WORKDIR /nopcommerce-web/src
-COPY ./nopcommerce-web/src ./
+WORKDIR /src
+COPY ./src ./
 
 # restore solution
 RUN dotnet restore NopCommerce.sln
 
-WORKDIR /nopcommerce-web/src/Presentation/Nop.Web
+WORKDIR /src/Presentation/Nop.Web
 
 # build and publish project
 RUN dotnet build Nop.Web.csproj -c Release -o /app
 
 # build plugins
-WORKDIR /nopcommerce-web/src/Plugins/Nop.Plugin.DiscountRules.CustomerRoles
+WORKDIR /src/Plugins/Nop.Plugin.DiscountRules.CustomerRoles
 RUN dotnet build Nop.Plugin.DiscountRules.CustomerRoles.csproj
-WORKDIR /nopcommerce-web/src/Plugins/Nop.Plugin.ExchangeRate.EcbExchange
+WORKDIR /src/Plugins/Nop.Plugin.ExchangeRate.EcbExchange
 RUN dotnet build Nop.Plugin.ExchangeRate.EcbExchange.csproj
-WORKDIR /nopcommerce-web/src/Plugins/Nop.Plugin.ExternalAuth.Facebook
+WORKDIR /src/Plugins/Nop.Plugin.ExternalAuth.Facebook
 RUN dotnet build Nop.Plugin.ExternalAuth.Facebook.csproj
-WORKDIR /nopcommerce-web/src/Plugins/Nop.Plugin.Misc.SendinBlue
+WORKDIR /src/Plugins/Nop.Plugin.Misc.SendinBlue
 RUN dotnet build Nop.Plugin.Misc.SendinBlue.csproj
-WORKDIR /nopcommerce-web/src/Plugins/Nop.Plugin.Payments.CheckMoneyOrder
+WORKDIR /src/Plugins/Nop.Plugin.Payments.CheckMoneyOrder
 RUN dotnet build Nop.Plugin.Payments.CheckMoneyOrder.csproj
-WORKDIR /nopcommerce-web/src/Plugins/Nop.Plugin.Payments.Manual
+WORKDIR /src/Plugins/Nop.Plugin.Payments.Manual
 RUN dotnet build Nop.Plugin.Payments.Manual.csproj
-WORKDIR /nopcommerce-web/src/Plugins/Nop.Plugin.Payments.PayPalStandard
+WORKDIR /src/Plugins/Nop.Plugin.Payments.PayPalStandard
 RUN dotnet build Nop.Plugin.Payments.PayPalStandard.csproj
-WORKDIR /nopcommerce-web/src/Plugins/Nop.Plugin.Payments.Qualpay
+WORKDIR /src/Plugins/Nop.Plugin.Payments.Qualpay
 RUN dotnet build Nop.Plugin.Payments.Qualpay.csproj
-WORKDIR /nopcommerce-web/src/Plugins/Nop.Plugin.Payments.Square
+WORKDIR /src/Plugins/Nop.Plugin.Payments.Square
 RUN dotnet build Nop.Plugin.Payments.Square.csproj
-WORKDIR /nopcommerce-web/src/Plugins/Nop.Plugin.Pickup.PickupInStore
+WORKDIR /src/Plugins/Nop.Plugin.Pickup.PickupInStore
 RUN dotnet build Nop.Plugin.Pickup.PickupInStore.csproj
-WORKDIR /nopcommerce-web/src/Plugins/Nop.Plugin.Shipping.FixedByWeightByTotal
+WORKDIR /src/Plugins/Nop.Plugin.Shipping.FixedByWeightByTotal
 RUN dotnet build Nop.Plugin.Shipping.FixedByWeightByTotal.csproj
-WORKDIR /nopcommerce-web/src/Plugins/Nop.Plugin.Shipping.UPS
+WORKDIR /src/Plugins/Nop.Plugin.Shipping.UPS
 RUN dotnet build Nop.Plugin.Shipping.UPS.csproj
-WORKDIR /nopcommerce-web/src/Plugins/Nop.Plugin.Tax.Avalara
+WORKDIR /src/Plugins/Nop.Plugin.Tax.Avalara
 RUN dotnet build Nop.Plugin.Tax.Avalara.csproj
-WORKDIR /nopcommerce-web/src/Plugins/Nop.Plugin.Tax.FixedOrByCountryStateZip
+WORKDIR /src/Plugins/Nop.Plugin.Tax.FixedOrByCountryStateZip
 RUN dotnet build Nop.Plugin.Tax.FixedOrByCountryStateZip.csproj
-WORKDIR /nopcommerce-web/src/Plugins/Nop.Plugin.Widgets.GoogleAnalytics
+WORKDIR /src/Plugins/Nop.Plugin.Widgets.GoogleAnalytics
 RUN dotnet build Nop.Plugin.Widgets.GoogleAnalytics.csproj
-WORKDIR /nopcommerce-web/src/Plugins/Nop.Plugin.Widgets.NivoSlider
+WORKDIR /src/Plugins/Nop.Plugin.Widgets.NivoSlider
 RUN dotnet build Nop.Plugin.Widgets.NivoSlider.csproj
 
 # publish project
-WORKDIR /nopcommerce-web/src/Presentation/Nop.Web
+WORKDIR /src/Presentation/Nop.Web
 RUN dotnet publish Nop.Web.csproj -c Release -o /app/published
 
 # create the runtime instance
