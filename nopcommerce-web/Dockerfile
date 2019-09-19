@@ -60,12 +60,10 @@ ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 WORKDIR /app
 RUN mkdir bin
 RUN mkdir logs
-RUN mkdir /config
 
 COPY --from=build /app/published .
 
 ENTRYPOINT ["dotnet", "Nop.Web.dll"]
 
-VOLUME ["/config"]
+VOLUME ["/app"]
 
-COPY README.md /config/*.json /app/App_Data/
