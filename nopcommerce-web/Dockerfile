@@ -68,5 +68,5 @@ ENTRYPOINT ["dotnet", "Nop.Web.dll"]
 
 VOLUME ["/config"]
 
-COPY README.md /config
+COPY README.md /config/README.md
 COPY /config/README.md /config/*.json /app/App_Data/
