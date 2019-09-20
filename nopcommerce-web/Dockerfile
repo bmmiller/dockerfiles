@@ -65,5 +65,3 @@ COPY --from=build /app/published .
 
 ENTRYPOINT ["dotnet", "Nop.Web.dll"]
 
-VOLUME ["/app"]
-
