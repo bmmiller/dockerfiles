@@ -15,7 +15,7 @@ services:
             - /mnt/docker/microsoft-mssql-server-linux/mssql:/var/opt/mssql
         container_name: 4-nopcommerce-mssql
         environment:
-            SA_PASSWORD: "ZPqnBPj6ZfETHVGGqpYrWuVV6sd8JCKc"
+            SA_PASSWORD: ""
             ACCEPT_EULA: "Y"
             MSSQL_PID: "Express"
 volumes:
