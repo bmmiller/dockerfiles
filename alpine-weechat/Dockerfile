@@ -6,7 +6,7 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
         org.label-scheme.dockerfile=$DOCKERFILE
 
 RUN \
-	apk --quiet --no-cache add weechat weechat-aspell weechat-python weechat-perl weechat-lua python lua5.1 weechat-ruby \
+	apk --quiet --no-cache add weechat weechat-aspell weechat-python weechat-perl weechat-lua lua5.1 weechat-ruby \
 	ruby tmux dropbear bash libressl su-exec py3-websocket-client py3-six && \
 	mkdir -p /data /data/weechat /data/dropbear /data/ssh && ln -s /data/dropbear /etc/dropbear && \
 	adduser -s /bin/bash -D -u 1024 -h /home/weechat weechat && \
