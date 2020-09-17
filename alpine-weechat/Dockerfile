@@ -8,10 +8,10 @@ LABEL   org.label-schema.build-date=$BUILD_DATE \
 RUN \
 	apk --quiet --no-cache add weechat weechat-aspell weechat-python weechat-perl weechat-lua python lua5.1 weechat-ruby ruby tmux dropbear bash && \
 	mkdir -p /data /data/weechat /data/dropbear /data/ssh && ln -s /data/dropbear /etc/dropbear && \
-	adduser -s /bin/bash -D -u 1000 -h /home/weechat weechat && \
+	adduser -s /bin/bash -D -u 1024 -h /home/weechat weechat && \
   echo -e 'set -g set-titles on\nset -g set-titles-string "#T"' > /home/weechat/.tmux.conf && \
 	ln -s /data/weechat /home/weechat/.weechat && ln -s /data/ssh /home/weechat/.ssh && \
-	chown weechat:weechat /home/weechat -R && \
+	#chown weechat:weechat /home/weechat -R && \
 	apk del --quiet --no-cache --purge && rm -rf /var/cache/apk/*
 
 COPY resources/ /
